@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@onready var sprite : Sprite2D = $PlayerSprite
+
 # velocidad máxima a la que nos moveremos
 @export var move_speed : float = 100
 # tasa de aceleración del personaje
@@ -31,3 +33,23 @@ func _physics_process(delta: float):
 # entonces...
 		velocity.y =-jump_force
 	move_and_slide()
+
+func _process(delta: float):
+	# Si el caracter se está moviendo:
+	if velocity.x != 0:
+	# entonces si la velocidad en x es positiva, se gira el sprite
+		sprite.flip_h = velocity.x > 0
+		
+	_manage_animations()
+
+func _manage_animations():
+# si el caracter está en el aire:
+	if not is_on_floor():
+	# reproduce "idle"
+		$AnimationPlayer.play("Jump")
+	# pero si se está moviendo:
+	elif move_input != 0:
+		$AnimationPlayer.play("Move")
+	# y si nada de eso ocurre:
+	else:
+		$AnimationPlayer.play("Idle")
