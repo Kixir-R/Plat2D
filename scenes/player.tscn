@@ -93,7 +93,7 @@ _data = {
 &"RESET": SubResource("Animation_qhqgy")
 }
 
-[node name="Player" type="CharacterBody2D" unique_id=248456232]
+[node name="Player" type="CharacterBody2D" unique_id=248456232 groups=["Players"]]
 script = ExtResource("1_g2els")
 
 [node name="PlayerSprite" type="Sprite2D" parent="." unique_id=319997876]
