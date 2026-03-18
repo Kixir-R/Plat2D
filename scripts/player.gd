@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 @onready var sprite : Sprite2D = $PlayerSprite
 
+# puntos de vida
+@export var health : int = 3
 # velocidad máxima a la que nos moveremos
 @export var move_speed : float = 100
 # tasa de aceleración del personaje
@@ -14,6 +16,18 @@ extends CharacterBody2D
 @export var jump_force : float = 190
 # variable donde almacenaremos las entradas para el movimiento
 var move_input : float
+
+func take_damage(amount : int):
+# perdemos una cantidad de vida
+	health-= amount
+	# si la vida llega a cero:
+	if health <= 0:
+	# perdemos (pero diferimos la llamada a función)
+		call_deferred("game_over")
+
+func game_over():
+# volvemos al principio del nivel 1
+	get_tree().change_scene_to_file("res://scenes/level_01.tscn")
 
 func _physics_process(delta: float):
 	if not is_on_floor():

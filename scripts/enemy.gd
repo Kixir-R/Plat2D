@@ -1,5 +1,8 @@
 extends Area2D
 
+func _ready():
+# reproduce "fly" justo al aparecer en escena
+	$AnimationPlayer.play("fly")
 # dirección del movimiento
 @export var move_direction : Vector2
 # velocidad del movimiento
@@ -23,11 +26,10 @@ func _physics_process(delta):
 	# la posición objetivo y la inicial son la misma
 			target_pos = start_pos
 
-
 func _on_body_entered(body: Node2D):
 # Si el cuerpo que entró no está en "Players":
 	if not body.is_in_group("Players"):
 	# regresa y hace nada
 		return
 	# si no, imprime "Daño"
-	print("Daño")
+	body.take_damage(3)
