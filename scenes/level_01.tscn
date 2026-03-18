@@ -4,6 +4,11 @@
 [ext_resource type="TileSet" uid="uid://cndgyrgwvlgnk" path="res://assests/Sprites/Tiles/level_01.tres" id="1_bpt1m"]
 [ext_resource type="PackedScene" uid="uid://dprhunyvfo8xa" path="res://scenes/player.tscn" id="3_mofoo"]
 [ext_resource type="PackedScene" uid="uid://l51mtgxpslnm" path="res://scenes/enemy.tscn" id="4_nr3cb"]
+[ext_resource type="PackedScene" uid="uid://yvco60a2ulsj" path="res://scenes/coin.tscn" id="5_j60wy"]
+[ext_resource type="Texture2D" uid="uid://di3dvllalhdb" path="res://assests/Sprites/Objects/tile_0112.png" id="6_qgxqk"]
+[ext_resource type="Script" uid="uid://ywgb02uh8tf3" path="res://scripts/end_flag.gd" id="6_t0ybu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t0ybu"]
 
 [node name="Main" type="Node" unique_id=507572157]
 
@@ -33,3 +38,21 @@ move_speed = 70.0
 position = Vector2(366, 21)
 move_direction = Vector2(100, -100)
 move_speed = 70.0
+
+[node name="Coin" parent="." unique_id=1601584318 instance=ExtResource("5_j60wy")]
+position = Vector2(186, -7)
+
+[node name="EndFlag" type="Area2D" parent="." unique_id=749792048]
+position = Vector2(-1, 0)
+script = ExtResource("6_t0ybu")
+scene_to_load = ExtResource("3_mofoo")
+
+[node name="FlagSprite" type="Sprite2D" parent="EndFlag" unique_id=63248871]
+position = Vector2(94, -8)
+texture = ExtResource("6_qgxqk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EndFlag" unique_id=1721387457]
+position = Vector2(94, -8)
+shape = SubResource("RectangleShape2D_t0ybu")
+
+[connection signal="body_entered" from="EndFlag" to="EndFlag" method="_on_body_entered"]

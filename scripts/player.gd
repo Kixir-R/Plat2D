@@ -67,3 +67,7 @@ func _manage_animations():
 	# y si nada de eso ocurre:
 	else:
 		$AnimationPlayer.play("Idle")
+
+func increase_score(amount : int):
+	PlayerStats.score += amount
+	print(PlayerStats.score)

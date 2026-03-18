@@ -32,4 +32,4 @@ func _on_body_entered(body: Node2D):
 	# regresa y hace nada
 		return
 	# si no, imprime "Daño"
-	body.take_damage(3)
+	body.take_damage(1)

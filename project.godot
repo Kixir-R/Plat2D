@@ -15,6 +15,10 @@ run/main_scene="uid://b8arkn8c0f71a"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+PlayerStats="*uid://ff3v6yiee2ob"
+
 [input]
 
 izquierda={
