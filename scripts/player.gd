@@ -43,8 +43,8 @@ func take_damage(amount : int):
 		call_deferred("game_over")
 
 func game_over():
-# volvemos al principio del nivel 1
-	get_tree().change_scene_to_file("res://scenes/level_01.tscn")
+# volvemos a la escena principal
+	get_tree().change_scene_to_file("res://scenes/menu.tscn")
 
 func _physics_process(delta: float):
 	if not is_on_floor():
