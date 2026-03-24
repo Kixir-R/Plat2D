@@ -1,5 +1,10 @@
 extends CharacterBody2D
 
+# Actualizar la vida- señal de daño
+signal OnUpdateHealth (health : int)
+# Actualizar el puntaje- señal de moneda
+signal OnUpdateScore (score : int)
+
 @onready var sprite : Sprite2D = $PlayerSprite
 
 # puntos de vida
@@ -20,6 +25,8 @@ var move_input : float
 func take_damage(amount : int):
 # perdemos una cantidad de vida
 	health-= amount
+	# emitimos la señal de daño
+	OnUpdateHealth.emit(health)
 	# si la vida llega a cero:
 	if health <= 0:
 	# perdemos (pero diferimos la llamada a función)
@@ -70,4 +77,5 @@ func _manage_animations():
 
 func increase_score(amount : int):
 	PlayerStats.score += amount
-	print(PlayerStats.score)
+#emitimosseñaldeincremento depuntaje
+	OnUpdateScore.emit(PlayerStats.score)
